@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Retention Check</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>Churn prediction</h1>
+  <p>Customer retention check</p>
+  <p class="sub">Enter a customer's account and service details to see how likely they are to leave.</p>
+
+  <form id="churnForm">
+    <section class="group">
+      <p class="group-label">Profile</p>
+      <div class="grid">
+        <div class="field">
+          <label for="gender">Gender</label>
+          <select id="gender" required>
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Senior citizen</label>
+          <div class="toggle-row" data-field="SeniorCitizen">
+            <button type="button" data-value="0" aria-pressed="true">No</button>
+            <button type="button" data-value="1" aria-pressed="false">Yes</button>
+          </div>
+        </div>
+        <div class="field">
+          <label>Has partner</label>
+          <div class="toggle-row" data-field="Partner">
+            <button type="button" data-value="Yes" aria-pressed="false">Yes</button>
+            <button type="button" data-value="No" aria-pressed="true">No</button>
+          </div>
+        </div>
+        <div class="field">
+          <label>Has dependents</label>
+          <div class="toggle-row" data-field="Dependents">
+            <button type="button" data-value="Yes" aria-pressed="false">Yes</button>
+            <button type="button" data-value="No" aria-pressed="true">No</button>
+          </div>
+        </div>
+        <div class="field">
+          <label for="tenure">Tenure (months)</label>
+          <input type="number" id="tenure" min="0" max="100" value="12" required>
+        </div>
+      </div>
+    </section>
+
+    <section class="group">
+      <p class="group-label">Services</p>
+      <div class="grid">
+        <div class="field">
+          <label>Phone service</label>
+          <div class="toggle-row" data-field="PhoneService">
+            <button type="button" data-value="Yes" aria-pressed="true">Yes</button>
+            <button type="button" data-value="No" aria-pressed="false">No</button>
+          </div>
+        </div>
+        <div class="field">
+          <label for="MultipleLines">Multiple lines</label>
+          <select id="MultipleLines">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+            <option value="No phone service">No phone service</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="InternetService">Internet service</label>
+          <select id="InternetService">
+            <option value="Fiber optic">Fiber optic</option>
+            <option value="DSL">DSL</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="OnlineSecurity">Online security</label>
+          <select id="OnlineSecurity">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+            <option value="No internet service">No internet service</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="OnlineBackup">Online backup</label>
+          <select id="OnlineBackup">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+            <option value="No internet service">No internet service</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="DeviceProtection">Device protection</label>
+          <select id="DeviceProtection">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+            <option value="No internet service">No internet service</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="TechSupport">Tech support</label>
+          <select id="TechSupport">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+            <option value="No internet service">No internet service</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="StreamingTV">Streaming TV</label>
+          <select id="StreamingTV">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+            <option value="No internet service">No internet service</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="StreamingMovies">Streaming movies</label>
+          <select id="StreamingMovies">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+            <option value="No internet service">No internet service</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section class="group">
+      <p class="group-label">Account &amp; billing</p>
+      <div class="grid">
+        <div class="field full">
+          <label for="Contract">Contract</label>
+          <select id="Contract">
+            <option value="Month-to-month">Month-to-month</option>
+            <option value="One year">One year</option>
+            <option value="Two year">Two year</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Paperless billing</label>
+          <div class="toggle-row" data-field="PaperlessBilling">
+            <button type="button" data-value="Yes" aria-pressed="true">Yes</button>
+            <button type="button" data-value="No" aria-pressed="false">No</button>
+          </div>
+        </div>
+        <div class="field">
+          <label for="PaymentMethod">Payment method</label>
+          <select id="PaymentMethod">
+            <option value="Electronic check">Electronic check</option>
+            <option value="Mailed check">Mailed check</option>
+            <option value="Bank transfer (automatic)">Bank transfer (automatic)</option>
+            <option value="Credit card (automatic)">Credit card (automatic)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="MonthlyCharges">Monthly charges ($)</label>
+          <input type="number" id="MonthlyCharges" min="0" step="0.01" value="70.00" required>
+        </div>
+        <div class="field">
+          <label for="TotalCharges">Total charges ($)</label>
+          <input type="number" id="TotalCharges" min="0" step="0.01" value="840.00" required>
+        </div>
+      </div>
+    </section>
+
+    <div class="actions">
+      <button type="submit" class="submit" id="submitBtn">PREDICT</button>
+      <p class="error" id="errorMsg">Couldn't reach the prediction service. Confirm it's running and try again.</p>
+    </div>
+  </form>
+
+  <div id="result">
+    <div class="result-top">
+      <div>
+        <p class="result-label" id="resultLabel">—</p>
+        <p class="result-desc" id="resultDesc">—</p>
+      </div>
+      <div class="prob-figure" id="resultProb">0%</div>
+    </div>
+    <div class="bars" id="bars">
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    </div>
+    <p class="signal-caption" id="signalCaption">Signal strength</p>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
